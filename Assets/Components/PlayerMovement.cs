@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,14 +14,19 @@ public class PlayerMovement : MonoBehaviour
         _collider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         _rb.velocity = new Vector2(movementSpeed * Time.deltaTime, _rb.velocity.y);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var normal = collision.GetContact(0).normal;
+        if (new[]{Vector2.left, Vector2.right}.Contains(normal) && collision.gameObject.CompareTag("Ground"))
+        {
+            var velocity = _rb.velocity;
+            velocity = new Vector2(-velocity.x, velocity.y);
+            _rb.velocity = velocity;
+        }
     }
 }
