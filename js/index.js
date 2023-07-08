@@ -13,9 +13,11 @@ function resizeCanvas() {
 
 function mainLoop() {
     ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = "#ff0000"
+    ctx.fillRect(0, 0, width, height);
+    window.requestAnimationFrame(mainLoop);
 }
 
 window.addEventListener("resize", resizeCanvas);
-window.requestAnimationFrame(mainLoop);
-
-ctx.fillRect(0, 0, width, height);
+resizeCanvas();
+mainLoop();
