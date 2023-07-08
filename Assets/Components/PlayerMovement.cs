@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] public float movementSpeed = 10f;
+    [SerializeField] public float movementSpeed = 100f;
     private Rigidbody2D _rb;
     private BoxCollider2D _collider;
-    private bool _isGrounded;
         
     private void Start()
     {
@@ -17,20 +16,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log(_isGrounded);
-        if (_isGrounded)
-            _rb.velocity = movementSpeed * Time.deltaTime * Vector2.right;
-    }
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Entered");
-            _isGrounded = true;
+        
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void FixedUpdate()
     {
-        Debug.Log("Exited");
-            _isGrounded = false;
+        _rb.velocity = new Vector2(movementSpeed * Time.deltaTime, _rb.velocity.y);
     }
 }

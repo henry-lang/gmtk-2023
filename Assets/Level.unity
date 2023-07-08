@@ -123,24 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &952820780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1550837828832341019, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
-  m_PrefabInstance: {fileID: 1309029581}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &952820785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952820780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4a3a81b8737fb4abdc17884345e7a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 10
 --- !u!1 &1305587645
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,12 +228,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7061297172477210778, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
-      propertyPath: m_Constraints
-      value: 4
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7061297172477210778, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 0
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 809f47e0a5d490945bae4f8b154ad886, type: 2}
+    - target: {fileID: 7061297172477210778, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7082869510751388872, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
       propertyPath: m_RootOrder
@@ -300,10 +286,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1550837828832341019, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 952820785}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed981be57f845e46b8cb1a7ae82c99d, type: 3}
 --- !u!1 &1678205357
 GameObject:
@@ -334,7 +317,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1678205357}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -349,7 +332,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!212 &1678205359
 SpriteRenderer:
