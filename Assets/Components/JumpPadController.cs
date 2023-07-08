@@ -17,6 +17,7 @@ public class JumpPadController : MonoBehaviour
         {
             var rb = other.gameObject.GetComponent<Rigidbody2D>();
             //rb.velocity = new Vector2(rb.velocity.x, boostForce);
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(transform.up * boostForce);
         }
     }
