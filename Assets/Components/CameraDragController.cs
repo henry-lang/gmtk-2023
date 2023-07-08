@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CameraDragController : MonoBehaviour
@@ -11,7 +12,32 @@ public class CameraDragController : MonoBehaviour
 
     private bool drag = false;
 
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
+    }
 
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    public bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
+
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if (curRaysastResult.gameObject.layer == LayerMask.NameToLayer("UI"))
+                return true;
+        }
+        return false;
+    }
 
     private void Start()
     {
@@ -21,15 +47,17 @@ public class CameraDragController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            Difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
-            if (drag == false)
+            if (drag == false && !IsPointerOverUIElement())
             {
                 drag = true;
                 Origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
-
+        }
+        if (Input.GetMouseButton(0))
+        {
+            Difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
         }
         else
         {

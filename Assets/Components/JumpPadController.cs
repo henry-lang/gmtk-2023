@@ -16,7 +16,8 @@ public class JumpPadController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             var rb = other.gameObject.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(rb.velocity.x, boostForce);
+            //rb.velocity = new Vector2(rb.velocity.x, boostForce);
+            rb.AddForce(transform.up * boostForce);
         }
     }
 }

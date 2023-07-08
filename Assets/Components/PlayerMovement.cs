@@ -5,8 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float movementSpeed = 100f;
     private Rigidbody2D _rb;
-    private Vector2 _dir = Vector2.right;
-        
+    public Vector2 _dir = Vector2.right;
+    public float acceleration = 5;
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
