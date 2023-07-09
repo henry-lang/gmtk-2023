@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         if (new[]{Vector2.left, Vector2.right}.Contains(normal) && collision.gameObject.CompareTag("Ground"))
         {
             _dir *= -1;
+            gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x*-1, gameObject.transform.localScale.y);
         }
     }
 }
